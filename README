@@ -1,1 +1,202 @@
+# 🚀 Binance Futures Trading Bot (Testnet)
 
+**CLI + Streamlit + Docker + Logging**
+
+A modular trading bot for Binance Futures Testnet with a clean architecture and real-time UI dashboard.
+
+---
+
+## 📌 Features
+
+### 🧾 Trading
+
+* MARKET & LIMIT order execution
+* BUY / SELL support
+* Real-time price usage
+
+### 🖥️ Streamlit UI
+
+* Live price auto-refresh
+* Price chart visualization
+* Order history tracking
+* Smart validation (≥ 100 USDT)
+
+### 🛠️ Backend
+
+* Modular architecture
+* Reusable components
+* Structured logging
+
+### 🐳 DevOps
+
+* Dockerized application
+* Environment-based configuration
+
+---
+
+## 🧱 Project Structure
+
+```
+trading_bot/
+│
+├── bot/
+│   ├── client.py
+│   ├── orders.py
+│   ├── validators.py
+│   ├── logging_config.py
+│
+├── cli.py
+├── app.py
+├── config.py
+├── requirements.txt
+├── Dockerfile
+└── logs/
+```
+
+---
+
+## 🧠 Architecture
+
+```
+CLI / Streamlit UI
+        ↓
+   Validators
+        ↓
+   Orders Layer
+        ↓
+   Binance Client
+        ↓
+ Binance Futures API
+
+Logs → logs/bot.log
+```
+
+---
+
+## ⚙️ Setup
+
+### 1. Clone Repository
+
+```
+git clone <your-repo-url>
+cd trading_bot
+```
+
+---
+
+### 2. Install Dependencies
+
+```
+pip install -r requirements.txt
+```
+
+---
+
+### 3. Configure API Keys
+
+Create a `.env` file:
+
+```
+API_KEY=your_testnet_key
+API_SECRET=your_testnet_secret
+```
+
+Use Binance Futures **Testnet** keys.
+
+---
+
+## ▶️ Run CLI
+
+### MARKET Order
+
+```
+python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.002
+```
+
+### LIMIT Order
+
+```
+python cli.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.002 --price 70000
+```
+
+---
+
+## 🖥️ Run Streamlit UI
+
+```
+streamlit run app.py
+```
+
+Open in browser:
+
+```
+http://localhost:8501
+```
+
+---
+
+## 🐳 Run with Docker
+
+### Build
+
+```
+docker build -t trading-bot .
+```
+
+### Run
+
+```
+docker run --env-file .env -v ${PWD}/logs:/app/logs trading-bot --symbol BTCUSDT --side BUY --type MARKET --quantity 0.002
+```
+
+---
+
+## 📄 Logging
+
+Logs are stored in:
+
+```
+logs/bot.log
+```
+
+### Example
+
+```
+INFO | CLI Input | symbol=BTCUSDT
+INFO | Placing MARKET order
+INFO | Order Success | ID=12345
+INFO | UI Order Success
+```
+
+---
+
+## ⚠️ Assumptions
+
+* Binance Futures Testnet used
+* Minimum order ≥ 100 USDT
+* Valid API credentials required
+
+---
+
+## 🧠 Design Decisions
+
+* Modular structure
+* Separation of concerns
+* Reusable backend for CLI & UI
+* Centralized logging
+* Docker for portability
+
+---
+
+## 🚀 Future Improvements
+
+* Stop-Limit / OCO orders
+* Advanced charts
+* PnL tracking
+* Database integration
+
+---
+
+## 👨‍💻 Author
+
+Developed as part of a Python Developer assignment.
