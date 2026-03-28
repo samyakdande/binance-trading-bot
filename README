@@ -1,153 +1,183 @@
-# 🚀 Binance Futures Trading Bot (Testnet)
+<h1># 🚀 Binance Futures Trading Bot (Testnet)<h1/>
 
-A modular Python-based trading bot that places MARKET and LIMIT orders on Binance Futures Testnet with:
+<p align="center">
+  <b>CLI + Streamlit + Docker + Logging</b><br>
+  A modular trading bot for Binance Futures Testnet with a clean architecture and real-time UI.
+</p>
 
-* CLI interface
-* Streamlit dashboard
-* Structured logging
-* Dockerized deployment
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10-blue?logo=python">
+  <img src="https://img.shields.io/badge/Streamlit-UI-red?logo=streamlit">
+  <img src="https://img.shields.io/badge/Docker-Containerized-blue?logo=docker">
+  <img src="https://img.shields.io/badge/Binance-Testnet-yellow">
+</p>
 
 ---
 
-## 📌 Features
+## ✨ Overview
 
-* ✅ MARKET & LIMIT order execution
-* ✅ BUY and SELL support
-* ✅ CLI interface (argparse)
-* ✅ Streamlit UI dashboard
-* ✅ Real-time price auto-refresh
-* ✅ Order history tracking
-* ✅ Price charts (candlestick trend)
-* ✅ Input validation (≥100 USDT rule)
-* ✅ Structured logging
-* ✅ Docker support
+This project is a **production-style trading bot** that allows users to:
+
+* Execute trades via CLI
+* Use an interactive dashboard (Streamlit)
+* Track logs for debugging
+* Run seamlessly inside Docker
+
+---
+
+## ⚡ Features
+
+### 🧾 Trading
+
+* 🟢 MARKET & LIMIT orders
+* 🔄 BUY / SELL support
+* 📊 Real-time price integration
+
+### 🖥️ UI Dashboard
+
+* 🔄 Live price auto-refresh
+* 📈 Price charts
+* 📜 Order history tracking
+* ⚠️ Smart validation (≥ 100 USDT)
+
+### 🛠️ Backend
+
+* 🧱 Modular architecture
+* 📦 Reusable services
+* 🧾 Structured logging
+
+### 🐳 DevOps
+
+* 📦 Dockerized execution
+* ⚙️ Environment-based config
 
 ---
 
 ## 🧱 Project Structure
 
-```
+```bash
 trading_bot/
 │
-├── bot/
-│   ├── __init__.py
+├── bot/                # Core logic
 │   ├── client.py
 │   ├── orders.py
 │   ├── validators.py
 │   ├── logging_config.py
 │
-├── cli.py
-├── app.py
+├── cli.py              # CLI interface
+├── app.py              # Streamlit UI
 ├── config.py
 ├── requirements.txt
 ├── Dockerfile
-├── .env
 └── logs/
-    └── bot.log
 ```
 
 ---
 
 ## 🧠 Architecture
 
-```
-CLI / Streamlit UI
-        ↓
-   Validators
-        ↓
-   Orders Layer
-        ↓
-   Binance Client
-        ↓
- Binance Futures API
+```text
+        ┌───────────────┐
+        │ CLI / UI      │
+        └──────┬────────┘
+               ↓
+        ┌───────────────┐
+        │ Validators    │
+        └──────┬────────┘
+               ↓
+        ┌───────────────┐
+        │ Orders Layer  │
+        └──────┬────────┘
+               ↓
+        ┌───────────────┐
+        │ Binance Client│
+        └──────┬────────┘
+               ↓
+        ┌───────────────┐
+        │ Binance API   │
+        └───────────────┘
 
-Logging:
-All layers → logs/bot.log
+   Logs: All layers → logs/bot.log
 ```
 
 ---
 
 ## ⚙️ Setup
 
-### 1. Clone repo
+### 1️⃣ Clone Repo
 
-```
+```bash
 git clone <your-repo-url>
 cd trading_bot
 ```
 
 ---
 
-### 2. Install dependencies
+### 2️⃣ Install Dependencies
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
 ---
 
-### 3. Add API keys
+### 3️⃣ Configure API Keys
 
 Create `.env`:
 
-```
+```env
 API_KEY=your_testnet_key
 API_SECRET=your_testnet_secret
 ```
 
-⚠️ Use Binance Futures Testnet keys
+⚠️ Use **Binance Futures Testnet keys**
 
 ---
 
 ## ▶️ Run CLI
 
-### MARKET Order
+### 🟢 MARKET Order
 
-```
+```bash
 python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.002
 ```
 
-### LIMIT Order
+### 🔵 LIMIT Order
 
-```
+```bash
 python cli.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.002 --price 70000
 ```
 
 ---
 
-## 🖥️ Run Streamlit UI
+## 🖥️ Run Streamlit Dashboard
 
-```
+```bash
 streamlit run app.py
 ```
 
-Open in browser:
+📍 Open: http://localhost:8501
 
-```
-http://localhost:8501
-```
+### 🔥 UI Highlights
 
-### UI Features:
-
-* Live price auto-refresh
-* Order placement
-* Validation feedback
-* Order history table
-* Price charts
+* 📊 Live price updates
+* 📈 Charts
+* 📜 Order history
+* ⚠️ Validation feedback
 
 ---
 
 ## 🐳 Run with Docker
 
-### Build
+### Build Image
 
-```
+```bash
 docker build -t trading-bot .
 ```
 
-### Run
+### Run Container
 
-```
+```bash
 docker run --env-file .env -v ${PWD}/logs:/app/logs trading-bot --symbol BTCUSDT --side BUY --type MARKET --quantity 0.002
 ```
 
@@ -155,15 +185,15 @@ docker run --env-file .env -v ${PWD}/logs:/app/logs trading-bot --symbol BTCUSDT
 
 ## 📄 Logging
 
-Logs stored in:
+📁 Location:
 
-```
+```bash
 logs/bot.log
 ```
 
-### Example
+### Sample Logs
 
-```
+```text
 INFO | CLI Input | symbol=BTCUSDT
 INFO | Placing MARKET order
 INFO | Order Success | ID=12345
@@ -175,30 +205,31 @@ INFO | UI Order Success
 ## ⚠️ Assumptions
 
 * Binance Futures Testnet used
-* Min order size ≥ 100 USDT
-* Internet required
+* Minimum order ≥ 100 USDT
+* Valid API credentials required
 
 ---
 
-## 🧠 Design Decisions
+## 🧠 Design Philosophy
 
-* Modular architecture
-* Separation of concerns
-* Reusable backend for CLI & UI
-* Centralized logging
-* Docker for portability
+* 🔹 Clean architecture
+* 🔹 Separation of concerns
+* 🔹 Reusable backend (CLI + UI)
+* 🔹 Observability via logging
+* 🔹 Container-first approach
 
 ---
 
-## 🚀 Future Improvements
+## 🚀 Future Enhancements
 
-* Stop-Limit / OCO orders
-* Trade history persistence (DB)
-* Advanced charts (candlestick UI)
-* PnL tracking
+* 📊 Advanced candlestick charts
+* 📉 PnL tracking
+* 🔁 Retry logic
+* 🗄️ Database integration
+* 📡 WebSocket live feeds
 
 ---
 
 ## 👨‍💻 Author
 
-Developed as part of a Python Developer assignment.
+Built as part of a Python Developer assignment 🚀
