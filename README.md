@@ -1,148 +1,141 @@
-# 🚀 Binance Futures Trading Bot (Testnet)
+# 🚀 Binance Futures Trading Bot
 
 <p align="center">
-  <b>CLI + Streamlit + Docker + Logging</b><br>
-  A modular trading bot for Binance Futures Testnet with a clean architecture and real-time UI.
+  <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/Binance-Testnet-F0B90B?style=for-the-badge&logo=binance&logoColor=white" />
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10-blue?logo=python">
-  <img src="https://img.shields.io/badge/Streamlit-UI-red?logo=streamlit">
-  <img src="https://img.shields.io/badge/Docker-Containerized-blue?logo=docker">
-  <img src="https://img.shields.io/badge/Binance-Testnet-yellow">
+  A modular, production-style trading bot for <strong>Binance Futures Testnet</strong> — featuring a CLI, real-time Streamlit dashboard, structured logging, and Docker support.
 </p>
 
 ---
 
-## ✨ Overview
+## 📋 Table of Contents
 
-This project is a **production-style trading bot** that allows users to:
+- [Overview](#-overview)
+- [Features](#-features)
+- [Project Structure](#-project-structure)
+- [Architecture](#-architecture)
+- [Setup](#-setup)
+- [Usage](#-usage)
+  - [CLI](#-cli)
+  - [Streamlit Dashboard](#-streamlit-dashboard)
+  - [Docker](#-docker)
+- [Logging](#-logging)
+- [Assumptions](#-assumptions)
+- [Future Enhancements](#-future-enhancements)
 
-* Execute trades via CLI
-* Use an interactive dashboard (Streamlit)
-* Track logs for debugging
-* Run seamlessly inside Docker
+---
+
+## 🌟 Overview
+
+This project provides a clean, extensible foundation for algorithmic trading on the Binance Futures Testnet. It supports both a command-line interface for scripted execution and an interactive web dashboard for real-time monitoring and order placement.
 
 ---
 
 ## ⚡ Features
 
-### 🧾 Trading
-
-* 🟢 MARKET & LIMIT orders
-* 🔄 BUY / SELL support
-* 📊 Real-time price integration
-
-### 🖥️ UI Dashboard
-
-* 🔄 Live price auto-refresh
-* 📈 Price charts
-* 📜 Order history tracking
-* ⚠️ Smart validation (≥ 100 USDT)
-
-### 🛠️ Backend
-
-* 🧱 Modular architecture
-* 📦 Reusable services
-* 🧾 Structured logging
-
-### 🐳 DevOps
-
-* 📦 Dockerized execution
-* ⚙️ Environment-based config
+| Category | Highlights |
+|----------|-----------|
+| 📈 Trading | MARKET & LIMIT orders, BUY/SELL support, real-time price integration |
+| 🖥️ Dashboard | Live price auto-refresh, price charts, order history, smart validation |
+| 🧱 Backend | Modular architecture, reusable services, structured logging |
+| 🐳 DevOps | Dockerized execution, environment-based configuration |
 
 ---
 
 ## 🧱 Project Structure
 
-```bash
+```
 trading_bot/
 │
-├── bot/                # Core logic
-│   ├── client.py
-│   ├── orders.py
-│   ├── validators.py
-│   ├── logging_config.py
+├── bot/                    # Core business logic
+│   ├── client.py           # Binance API client wrapper
+│   ├── orders.py           # Order placement logic
+│   ├── validators.py       # Input validation
+│   └── logging_config.py   # Logging setup
 │
-├── cli.py              # CLI interface
-├── app.py              # Streamlit UI
-├── config.py
-├── requirements.txt
-├── Dockerfile
+├── app.py                  # Streamlit dashboard
+├── cli.py                  # CLI entry point
+├── config.py               # Configuration loader
+├── requirements.txt        # Python dependencies
+├── Dockerfile              # Container definition
 └── logs/
+    └── bot.log             # Runtime logs
 ```
 
 ---
 
 ## 🧠 Architecture
 
-```text
-        ┌───────────────┐
-        │ CLI / UI      │
-        └──────┬────────┘
-               ↓
-        ┌───────────────┐
-        │ Validators    │
-        └──────┬────────┘
-               ↓
-        ┌───────────────┐
-        │ Orders Layer  │
-        └──────┬────────┘
-               ↓
-        ┌───────────────┐
-        │ Binance Client│
-        └──────┬────────┘
-               ↓
-        ┌───────────────┐
-        │ Binance API   │
-        └───────────────┘
+```
+        ┌─────────────────────┐
+        │    CLI  /  UI       │
+        └──────────┬──────────┘
+                   │
+        ┌──────────▼──────────┐
+        │     Validators      │
+        └──────────┬──────────┘
+                   │
+        ┌──────────▼──────────┐
+        │    Orders Layer     │
+        └──────────┬──────────┘
+                   │
+        ┌──────────▼──────────┐
+        │   Binance Client    │
+        └──────────┬──────────┘
+                   │
+        ┌──────────▼──────────┐
+        │    Binance API      │
+        └─────────────────────┘
 
-   Logs: All layers → logs/bot.log
+  All layers → logs/bot.log
 ```
 
 ---
 
 ## ⚙️ Setup
 
-### 1️⃣ Clone Repo
+### 1. Clone the repository
 
 ```bash
 git clone <your-repo-url>
 cd trading_bot
 ```
 
----
-
-### 2️⃣ Install Dependencies
+### 2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
+### 3. Configure API keys
 
-### 3️⃣ Configure API Keys
-
-Create `.env`:
+Create a `.env` file in the project root:
 
 ```env
-API_KEY=your_testnet_key
-API_SECRET=your_testnet_secret
+API_KEY=your_testnet_api_key
+API_SECRET=your_testnet_api_secret
 ```
 
-⚠️ Use **Binance Futures Testnet keys**
+> ⚠️ Make sure to use **Binance Futures Testnet** credentials, not live keys.
 
 ---
 
-## ▶️ Run CLI
+## 🚀 Usage
 
-### 🟢 MARKET Order
+### � CLI
+
+**MARKET order:**
 
 ```bash
 python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.002
 ```
 
-### 🔵 LIMIT Order
+**LIMIT order:**
 
 ```bash
 python cli.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.002 --price 70000
@@ -150,86 +143,70 @@ python cli.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.002 --price
 
 ---
 
-## 🖥️ Run Streamlit Dashboard
+### 🖥️ Streamlit Dashboard
 
 ```bash
 streamlit run app.py
 ```
 
-📍 Open: http://localhost:8501
+Open your browser at [http://localhost:8501](http://localhost:8501)
 
-### 🔥 UI Highlights
-
-* 📊 Live price updates
-* 📈 Charts
-* 📜 Order history
-* ⚠️ Validation feedback
+The dashboard provides:
+- 📊 Live price updates with auto-refresh
+- 📈 Price charts
+- 📜 Order history tracking
+- ⚠️ Real-time validation feedback
 
 ---
 
-## 🐳 Run with Docker
+### 🐳 Docker
 
-### Build Image
+**Build the image:**
 
 ```bash
 docker build -t trading-bot .
 ```
 
-### Run Container
+**Run a container:**
 
 ```bash
-docker run --env-file .env -v ${PWD}/logs:/app/logs trading-bot --symbol BTCUSDT --side BUY --type MARKET --quantity 0.002
+docker run --env-file .env -v ${PWD}/logs:/app/logs trading-bot \
+  --symbol BTCUSDT --side BUY --type MARKET --quantity 0.002
 ```
 
 ---
 
 ## 📄 Logging
 
-📁 Location:
+Logs are written to `logs/bot.log` and follow a structured format:
 
-```bash
-logs/bot.log
 ```
-
-### Sample Logs
-
-```text
-INFO | CLI Input | symbol=BTCUSDT
-INFO | Placing MARKET order
-INFO | Order Success | ID=12345
-INFO | UI Order Success
+INFO  | CLI Input     | symbol=BTCUSDT
+INFO  | Placing MARKET order
+INFO  | Order Success | ID=12345
+INFO  | UI Order Success
 ```
 
 ---
 
 ## ⚠️ Assumptions
 
-* Binance Futures Testnet used
-* Minimum order ≥ 100 USDT
-* Valid API credentials required
+- Binance Futures **Testnet** is used — no real funds are at risk
+- Minimum order value is **≥ 100 USDT**
+- Valid API credentials must be provided via `.env`
 
 ---
 
-## 🧠 Design Philosophy
+## 🔮 Future Enhancements
 
-* 🔹 Clean architecture
-* 🔹 Separation of concerns
-* 🔹 Reusable backend (CLI + UI)
-* 🔹 Observability via logging
-* 🔹 Container-first approach
-
----
-
-## 🚀 Future Enhancements
-
-* 📊 Advanced candlestick charts
-* 📉 PnL tracking
-* 🔁 Retry logic
-* 🗄️ Database integration
-* 📡 WebSocket live feeds
+- [ ] Advanced candlestick charts
+- [ ] PnL tracking and reporting
+- [ ] Retry logic with exponential backoff
+- [ ] Database integration for order persistence
+- [ ] WebSocket live price feeds
 
 ---
 
 ## 👨‍💻 Author
 
-Built as part of a Python Developer assignment 🚀
+Built as part of a Python Developer assignment.
