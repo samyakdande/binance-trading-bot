@@ -1,0 +1,27 @@
+2026-03-28 09:18:32,193 | INFO | Binance client initialized successfully
+2026-03-28 09:18:32,195 | INFO | CLI Input | symbol=BTCUSDT | side=BUY | type=MARKET | qty=0.002 | price=None
+2026-03-28 09:18:32,195 | INFO | Placing MARKET order | BTCUSDT | BUY | qty=0.002
+2026-03-28 09:18:34,608 | INFO | Order Success | ID=13001703427 | Status=FILLED | ExecutedQty=0.002
+2026-03-28 09:18:34,608 | INFO | CLI Success | ID=13001703427 | Status=FILLED | ExecutedQty=0.002
+2026-03-28 15:00:40,456 | INFO | Binance client initialized successfully
+2026-03-28 15:00:41,351 | INFO | NumExpr defaulting to 8 threads.
+2026-03-28 15:00:43,111 | INFO | Binance client initialized successfully
+2026-03-28 15:00:49,009 | INFO | Binance client initialized successfully
+2026-03-28 15:00:50,502 | INFO | Binance client initialized successfully
+2026-03-28 15:00:51,434 | INFO | UI Input | BTCUSDT | BUY | MARKET | qty=0.002
+2026-03-28 15:00:51,434 | INFO | Placing MARKET order | BTCUSDT | BUY | qty=0.002
+2026-03-28 15:00:53,382 | INFO | Order Success | ID=13001765964 | Status=FILLED | ExecutedQty=0.002
+2026-03-28 15:00:53,382 | INFO | Order Success | 13001765964
+2026-03-28 15:00:57,289 | INFO | Binance client initialized successfully
+2026-03-28 15:01:02,209 | INFO | Binance client initialized successfully
+2026-03-28 15:01:07,107 | INFO | Binance client initialized successfully
+2026-03-28 15:01:12,205 | INFO | Binance client initialized successfully
+2026-03-28 15:01:14,217 | INFO | Binance client initialized successfully
+2026-03-28 15:01:15,565 | INFO | Binance client initialized successfully
+2026-03-28 15:01:20,821 | INFO | Binance client initialized successfully
+2026-03-28 15:01:26,837 | INFO | Binance client initialized successfully
+2026-03-28 09:32:12,171 | INFO | Binance client initialized successfully
+2026-03-28 09:32:12,174 | INFO | CLI Input | symbol=BTCUSDT | side=BUY | type=MARKET | qty=0.002 | price=None
+2026-03-28 09:32:12,174 | INFO | Placing MARKET order | BTCUSDT | BUY | qty=0.002
+2026-03-28 09:32:15,295 | INFO | Order Success | ID=13001768252 | Status=FILLED | ExecutedQty=0.002
+2026-03-28 09:32:15,296 | INFO | CLI Success | ID=13001768252 | Status=FILLED | ExecutedQty=0.002
